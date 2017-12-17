@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.zx.sms.codec.cmpp.msg;
 
@@ -26,334 +26,323 @@ import com.zx.sms.common.util.MsgId;
 /**
  * @author huzorro(huzorro@gmail.com)
  * @author Lihuanghe(18852780@qq.com)
- *
  */
-public class CmppDeliverRequestMessage extends DefaultMessage  implements LongSMSMessage{
-	private static final long serialVersionUID = 4851585208067281751L;
-	private MsgId msgId = new MsgId();
-	private String destId = GlobalConstance.emptyString;
-	private String serviceid = GlobalConstance.emptyString;
+public class CmppDeliverRequestMessage extends DefaultMessage implements LongSMSMessage {
+    private static final long serialVersionUID = 4851585208067281751L;
+    private MsgId msgId = new MsgId();
+    private String destId = GlobalConstance.emptyString;
+    private String serviceid = GlobalConstance.emptyString;
 
-	private String srcterminalId = GlobalConstance.emptyString;
-	private short srcterminalType = 0;
-	private short registeredDelivery = 0;
+    private String srcterminalId = GlobalConstance.emptyString;
+    private short srcterminalType = 0;
+    private short registeredDelivery = 0;
 
-	private CmppReportRequestMessage reportRequestMessage = null;
-	private String linkid = GlobalConstance.emptyString;
+    private CmppReportRequestMessage reportRequestMessage = null;
+    private String linkid = GlobalConstance.emptyString;
 
-	private String reserved = GlobalConstance.emptyString;
+    private String reserved = GlobalConstance.emptyString;
 
-	private boolean isReport = false;
-	
-	private SmsMessage msg;
+    private boolean isReport = false;
 
-	private boolean supportLongMsg = true;
-	
-	private short tppid = 0;// 0是普通GSM 类型，点到点方式 ,127 :写sim卡
-	private short tpudhi = 0; // 0:msgcontent不带协议头。1:带有协议头
-	private SmsDcs msgfmt = SmsDcs.getGeneralDataCodingDcs(SmsAlphabet.ASCII, SmsMsgClass.CLASS_UNKNOWN);
-	private short msgLength = 140;
-	private byte[] msgContentBytes = GlobalConstance.emptyBytes;
+    private SmsMessage msg;
 
-	public CmppDeliverRequestMessage(Header header) {
-		super(CmppPacketType.CMPPDELIVERREQUEST, header);
-	}
+    private boolean supportLongMsg = true;
 
-	public CmppDeliverRequestMessage() {
-		super(CmppPacketType.CMPPDELIVERREQUEST);
-	}
+    private short tppid = 0;// 0是普通GSM 类型，点到点方式 ,127 :写sim卡
+    private short tpudhi = 0; // 0:msgcontent不带协议头。1:带有协议头
+    private SmsDcs msgfmt = SmsDcs.getGeneralDataCodingDcs(SmsAlphabet.ASCII, SmsMsgClass.CLASS_UNKNOWN);
+    private short msgLength = 140;
+    private byte[] msgContentBytes = GlobalConstance.emptyBytes;
 
-	/**
-	 * @return the msgId
-	 */
-	public MsgId getMsgId() {
-		return msgId;
-	}
+    public CmppDeliverRequestMessage(Header header) {
+        super(CmppPacketType.CMPPDELIVERREQUEST, header);
+    }
 
-	/**
-	 * @param msgId
-	 *            the msgId to set
-	 */
-	public void setMsgId(MsgId msgId) {
-		this.msgId = msgId;
-	}
+    public CmppDeliverRequestMessage() {
+        super(CmppPacketType.CMPPDELIVERREQUEST);
+    }
 
-	/**
-	 * @return the destId
-	 */
-	public String getDestId() {
-		return destId;
-	}
+    /**
+     * @return the msgId
+     */
+    public MsgId getMsgId() {
+        return msgId;
+    }
 
-	/**
-	 * @param destId
-	 *            the destId to set
-	 */
-	public void setDestId(String destId) {
-		this.destId = destId;
-	}
+    /**
+     * @param msgId the msgId to set
+     */
+    public void setMsgId(MsgId msgId) {
+        this.msgId = msgId;
+    }
 
-	/**
-	 * @return the serviceid
-	 */
-	public String getServiceid() {
-		return serviceid;
-	}
+    /**
+     * @return the destId
+     */
+    public String getDestId() {
+        return destId;
+    }
 
-	/**
-	 * @param serviceid
-	 *            the serviceid to set
-	 */
-	public void setServiceid(String serviceid) {
-		this.serviceid = serviceid;
-	}
+    /**
+     * @param destId the destId to set
+     */
+    public void setDestId(String destId) {
+        this.destId = destId;
+    }
 
-	/**
-	 * @return the srcterminalId
-	 */
-	public String getSrcterminalId() {
-		return srcterminalId;
-	}
+    /**
+     * @return the serviceid
+     */
+    public String getServiceid() {
+        return serviceid;
+    }
 
-	/**
-	 * @param srcterminalId
-	 *            the srcterminalId to set
-	 */
-	public void setSrcterminalId(String srcterminalId) {
-		this.srcterminalId = srcterminalId;
-	}
+    /**
+     * @param serviceid the serviceid to set
+     */
+    public void setServiceid(String serviceid) {
+        this.serviceid = serviceid;
+    }
 
-	/**
-	 * @return the srcterminalType
-	 */
-	public short getSrcterminalType() {
-		return srcterminalType;
-	}
+    /**
+     * @return the srcterminalId
+     */
+    public String getSrcterminalId() {
+        return srcterminalId;
+    }
 
-	/**
-	 * @param srcterminalType
-	 *            the srcterminalType to set
-	 */
-	public void setSrcterminalType(short srcterminalType) {
-		this.srcterminalType = srcterminalType;
-	}
+    /**
+     * @param srcterminalId the srcterminalId to set
+     */
+    public void setSrcterminalId(String srcterminalId) {
+        this.srcterminalId = srcterminalId;
+    }
 
-	/**
-	 * @return the registeredDelivery
-	 */
-	public short getRegisteredDelivery() {
-		return registeredDelivery;
-	}
+    /**
+     * @return the srcterminalType
+     */
+    public short getSrcterminalType() {
+        return srcterminalType;
+    }
 
-	/**
-	 * @param registeredDelivery
-	 *            the registeredDelivery to set
-	 */
-	public void setRegisteredDelivery(short registeredDelivery) {
-		this.registeredDelivery = registeredDelivery;
-		if (this.registeredDelivery != 0) {
-			setReport(true);
-			setReportRequestMessage(this.reportRequestMessage);
-		}
-	}
+    /**
+     * @param srcterminalType the srcterminalType to set
+     */
+    public void setSrcterminalType(short srcterminalType) {
+        this.srcterminalType = srcterminalType;
+    }
 
-	/**
-	 * @return the reserved
-	 */
-	public String getReserved() {
-		return reserved;
-	}
+    /**
+     * @return the registeredDelivery
+     */
+    public short getRegisteredDelivery() {
+        return registeredDelivery;
+    }
 
-	/**
-	 * @param reserved
-	 *            the reserved to set
-	 */
-	public void setReserved(String reserved) {
-		this.reserved = reserved;
-	}
+    /**
+     * @param registeredDelivery the registeredDelivery to set
+     */
+    public void setRegisteredDelivery(short registeredDelivery) {
+        this.registeredDelivery = registeredDelivery;
+        if (this.registeredDelivery != 0) {
+            setReport(true);
+            setReportRequestMessage(this.reportRequestMessage);
+        }
+    }
 
-	/**
-	 * @return the reportRequestMessage
-	 */
-	public CmppReportRequestMessage getReportRequestMessage() {
-		return reportRequestMessage;
-	}
+    /**
+     * @return the reserved
+     */
+    public String getReserved() {
+        return reserved;
+    }
 
-	/**
-	 * @param reportRequestMessage
-	 *            the reportRequestMessage to set
-	 */
-	public void setReportRequestMessage(CmppReportRequestMessage reportRequestMessage) {
-		this.reportRequestMessage = reportRequestMessage;
-	}
+    /**
+     * @param reserved the reserved to set
+     */
+    public void setReserved(String reserved) {
+        this.reserved = reserved;
+    }
 
-	/**
-	 * @return the linkid
-	 */
-	public String getLinkid() {
-		return linkid;
-	}
+    /**
+     * @return the reportRequestMessage
+     */
+    public CmppReportRequestMessage getReportRequestMessage() {
+        return reportRequestMessage;
+    }
 
-	/**
-	 * @param linkid
-	 *            the linkid to set
-	 */
-	public void setLinkid(String linkid) {
-		this.linkid = linkid;
-	}
+    /**
+     * @param reportRequestMessage the reportRequestMessage to set
+     */
+    public void setReportRequestMessage(CmppReportRequestMessage reportRequestMessage) {
+        this.reportRequestMessage = reportRequestMessage;
+    }
 
-	/**
-	 * @return the isReport
-	 */
-	public boolean isReport() {
-		return isReport;
-	}
+    /**
+     * @return the linkid
+     */
+    public String getLinkid() {
+        return linkid;
+    }
 
-	/**
-	 * @param isReport
-	 *            the isReport to set
-	 */
-	public void setReport(boolean isReport) {
-		this.isReport = isReport;
-	}
+    /**
+     * @param linkid the linkid to set
+     */
+    public void setLinkid(String linkid) {
+        this.linkid = linkid;
+    }
 
-	public String getMsgContent() {
-		if(msgContentBytes!=null && msgContentBytes.length>0){
-			LongMessageFrame frame = generateFrame();
-			return LongMessageFrameHolder.INS.getPartTextMsg(frame);
-		}else{
-			if(msg instanceof SmsTextMessage){
-				SmsTextMessage textMsg = (SmsTextMessage) msg;
-				return textMsg.getText();
-			}else if(msg instanceof SmsPortAddressedTextMessage){
-				SmsPortAddressedTextMessage textMsg = (SmsPortAddressedTextMessage) msg;
-				return textMsg.getText();
-			}else if(msg instanceof SmsMmsNotificationMessage){
-				SmsMmsNotificationMessage mms = (SmsMmsNotificationMessage) msg;
-				return mms.getContentLocation_();
-			}else if(msg instanceof SmsWapPushMessage){
-				SmsWapPushMessage wap = (SmsWapPushMessage) msg;
-				WbxmlDocument wbxml = wap.getWbxml();
-				if(wbxml instanceof WapSIPush){
-					return ((WapSIPush)wbxml).getUri();
-				}else if(wbxml instanceof WapSLPush){
-					return ((WapSLPush)wbxml).getUri();
-				}
-			}
-		}
-		
-		return "";
-	}
+    /**
+     * @return the isReport
+     */
+    public boolean isReport() {
+        return isReport;
+    }
 
-	public boolean isSupportLongMsg() {
-		return supportLongMsg;
-	}
+    /**
+     * @param isReport the isReport to set
+     */
+    public void setReport(boolean isReport) {
+        this.isReport = isReport;
+    }
 
-	public void setSupportLongMsg(boolean supportLongMsg) {
-		this.supportLongMsg = true;
-	}
+    public String getMsgContent() {
+        if (msgContentBytes != null && msgContentBytes.length > 0) {
+            LongMessageFrame frame = generateFrame();
+            return LongMessageFrameHolder.INS.getPartTextMsg(frame);
+        } else {
+            if (msg instanceof SmsTextMessage) {
+                SmsTextMessage textMsg = (SmsTextMessage) msg;
+                return textMsg.getText();
+            } else if (msg instanceof SmsPortAddressedTextMessage) {
+                SmsPortAddressedTextMessage textMsg = (SmsPortAddressedTextMessage) msg;
+                return textMsg.getText();
+            } else if (msg instanceof SmsMmsNotificationMessage) {
+                SmsMmsNotificationMessage mms = (SmsMmsNotificationMessage) msg;
+                return mms.getContentLocation_();
+            } else if (msg instanceof SmsWapPushMessage) {
+                SmsWapPushMessage wap = (SmsWapPushMessage) msg;
+                WbxmlDocument wbxml = wap.getWbxml();
+                if (wbxml instanceof WapSIPush) {
+                    return ((WapSIPush) wbxml).getUri();
+                } else if (wbxml instanceof WapSLPush) {
+                    return ((WapSLPush) wbxml).getUri();
+                }
+            }
+        }
 
-	public short getTppid() {
-		return tppid;
-	}
+        return "";
+    }
 
-	public void setTppid(short tppid) {
-		this.tppid = tppid;
-	}
+    public boolean isSupportLongMsg() {
+        return supportLongMsg;
+    }
 
-	public short getTpudhi() {
-		return tpudhi;
-	}
+    public void setSupportLongMsg(boolean supportLongMsg) {
+        this.supportLongMsg = true;
+    }
 
-	public void setTpudhi(short tpudhi) {
-		this.tpudhi = tpudhi;
-	}
+    public short getTppid() {
+        return tppid;
+    }
 
-	public SmsDcs getMsgfmt() {
-		return msgfmt;
-	}
+    public void setTppid(short tppid) {
+        this.tppid = tppid;
+    }
 
-	public void setMsgfmt(SmsDcs msgfmt) {
-		this.msgfmt = msgfmt;
-	}
+    public short getTpudhi() {
+        return tpudhi;
+    }
 
-	public short getMsgLength() {
-		return msgLength;
-	}
+    public void setTpudhi(short tpudhi) {
+        this.tpudhi = tpudhi;
+    }
 
-	public void setMsgLength(short msgLength) {
-		this.msgLength = msgLength;
-	}
-	
-	public byte[] getMsgContentBytes() {
-		return msgContentBytes;
-	}
+    public SmsDcs getMsgfmt() {
+        return msgfmt;
+    }
 
-	public void setMsgContentBytes(byte[] msgContentBytes) {
-		this.msgContentBytes = msgContentBytes;
-	}
+    public void setMsgfmt(SmsDcs msgfmt) {
+        this.msgfmt = msgfmt;
+    }
 
-	public void setMsg(SmsMessage msg) {
-		this.msg = msg;
-	}
+    public short getMsgLength() {
+        return msgLength;
+    }
 
-	/**
-	 * @return the msgContent
-	 */
-	public void setMsgContent(String msgContent) {
-		setMsgContent(CMPPCommonUtil.buildTextMessage(msgContent));
-	}
-	
-	public void setMsgContent(SmsMessage msg){
-		this.msg = msg;
-	}
+    public void setMsgLength(short msgLength) {
+        this.msgLength = msgLength;
+    }
 
-	public SmsMessage getMsg() {
-		return msg;
-	}
+    public byte[] getMsgContentBytes() {
+        return msgContentBytes;
+    }
 
-	public CmppDeliverRequestMessage clone() throws CloneNotSupportedException {
-		return (CmppDeliverRequestMessage) super.clone();
-	}
+    public void setMsgContentBytes(byte[] msgContentBytes) {
+        this.msgContentBytes = msgContentBytes;
+    }
 
-	@Override
-	public String toString() {
-		if (isReport()) {
-			StringBuilder sb = new StringBuilder();
-			sb.append("CmppDeliverRequestMessage [msgId=").append(msgId ).append( ", destId=" ).append( destId ).append( ", srcterminalId=" ).append( srcterminalId ).append( ", getHeader()=" ).append( getHeader() ).append( ", ReportRequest=" ).append( getReportRequestMessage() ).append( "]");
-			return sb.toString();
-		}
-		StringBuilder sb = new StringBuilder();
-		sb.append("CmppDeliverRequestMessage [msgId=").append(msgId).append(", destId=").append(destId).append(", srcterminalId=").append(srcterminalId)
-				.append(", msgContent=").append(getMsgContent()).append(", SmsMessageType=").append(msg==null?"":msg.getClass().getSimpleName()).append(", sequenceId=").append(getHeader().getSequenceId()).append("]");
-		return sb.toString();
-	}
+    public void setMsg(SmsMessage msg) {
+        this.msg = msg;
+    }
 
-	@Override
-	public LongMessageFrame generateFrame() {
-		LongMessageFrame frame = new LongMessageFrame();
-		frame.setTppid(getTppid());
-		frame.setTpudhi(getTpudhi());
-		frame.setMsgfmt(getMsgfmt());
-		frame.setMsgContentBytes(getMsgContentBytes());
-		frame.setMsgLength((short)getMsgLength());
-		return frame;
-	}
-	
-	@Override
-	public CmppDeliverRequestMessage generateMessage(LongMessageFrame frame)  throws Exception{
-		CmppDeliverRequestMessage requestMessage = this.clone();
-		
-		requestMessage.setTppid(frame.getTppid());
-		requestMessage.setTpudhi(frame.getTpudhi());
-		requestMessage.setMsgfmt(frame.getMsgfmt());
-		requestMessage.setMsgContentBytes(frame.getMsgContentBytes());
-		requestMessage.setMsgLength((short)frame.getMsgLength());
-		
-		if(frame.getPknumber()!=1){
-			requestMessage.getHeader().setSequenceId(DefaultSequenceNumberUtil.getSequenceNo());
-		}
-		
-		return requestMessage;
-	}
+    /**
+     * @return the msgContent
+     */
+    public void setMsgContent(String msgContent) {
+        setMsgContent(CMPPCommonUtil.buildTextMessage(msgContent));
+    }
+
+    public void setMsgContent(SmsMessage msg) {
+        this.msg = msg;
+    }
+
+    public SmsMessage getMsg() {
+        return msg;
+    }
+
+    public CmppDeliverRequestMessage clone() throws CloneNotSupportedException {
+        return (CmppDeliverRequestMessage) super.clone();
+    }
+
+    @Override
+    public String toString() {
+        if (isReport()) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("CmppDeliverRequestMessage [msgId=").append(msgId).append(", destId=").append(destId).append(", srcterminalId=").append(srcterminalId).append(", getHeader()=").append(getHeader()).append(", ReportRequest=").append(getReportRequestMessage()).append("]");
+            return sb.toString();
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("CmppDeliverRequestMessage [msgId=").append(msgId).append(", destId=").append(destId).append(", srcterminalId=").append(srcterminalId)
+                .append(", msgContent=").append(getMsgContent()).append(", SmsMessageType=").append(msg == null ? "" : msg.getClass().getSimpleName()).append(", sequenceId=").append(getHeader().getSequenceId()).append("]");
+        return sb.toString();
+    }
+
+    @Override
+    public LongMessageFrame generateFrame() {
+        LongMessageFrame frame = new LongMessageFrame();
+        frame.setTppid(getTppid());
+        frame.setTpudhi(getTpudhi());
+        frame.setMsgfmt(getMsgfmt());
+        frame.setMsgContentBytes(getMsgContentBytes());
+        frame.setMsgLength((short) getMsgLength());
+        return frame;
+    }
+
+    @Override
+    public CmppDeliverRequestMessage generateMessage(LongMessageFrame frame) throws Exception {
+        CmppDeliverRequestMessage requestMessage = this.clone();
+
+        requestMessage.setTppid(frame.getTppid());
+        requestMessage.setTpudhi(frame.getTpudhi());
+        requestMessage.setMsgfmt(frame.getMsgfmt());
+        requestMessage.setMsgContentBytes(frame.getMsgContentBytes());
+        requestMessage.setMsgLength((short) frame.getMsgLength());
+
+        if (frame.getPknumber() != 1) {
+            requestMessage.getHeader().setSequenceId(DefaultSequenceNumberUtil.getSequenceNo());
+        }
+
+        return requestMessage;
+    }
 }
